@@ -1,4 +1,4 @@
-### Project page for the DDPO3D paper
+### Project page for the MVGaussian paper
 
 This website is built upon [bulma](https://bulma.io/), [ionicons](https://ionic.io/ionicons/), and [model-viewer](https://modelviewer.dev/).
 
