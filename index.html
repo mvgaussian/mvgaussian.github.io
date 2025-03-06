@@ -1,0 +1,386 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- custom stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- model viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+  <title>
+    MVGaussian
+  </title>
+</head>
+<body>
+  <section class="section">
+
+  <div class="container has-text-centered">
+    <!-- paper title -->
+    <p class="title is-3"> MVGaussian: High-Fidelity text-to-3D Content Generation with Multi-View Guidance and Surface Densification </p>
+    <!-- publication -->
+    <p class="subtitle is-4"> Under submission </p>
+    <!-- authors -->
+    <p class="title is-5 mt-2"> 
+      <a href="https://mvgaussian.github.io/" target="_blank">Anonymous authors</a>
+    </p>
+    <!-- affiliations -->
+    <p class="subtitle is-5"> 
+      <!-- <sup>1</sup> Anonymous university &nbsp; -->
+    </p>
+
+    <!-- other links -->
+    <div class="is-flex is-justify-content-center">
+      <span class="icon-text mx-1">
+        <!-- <a class="button is-dark" href="" role="button" target="_blank"> <span class="icon"> <ion-icon name="document-outline"></ion-icon> </span> <span> Arxiv </span>  </a>  -->
+      </span>
+      <span class="icon-text mx-1">
+        <a class="button is-dark" href="https://github.com/mvgaussian/mvgaussian" role="button" target="_blank"> <span class="icon"> <ion-icon name="logo-github"></ion-icon> </span> <span> Code </span> </a> 
+      </span>
+    </div>
+   
+  </div>
+
+  <!-- main container -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-justified">
+      The field of text-to-3D content generation has made significant progress in generating realistic 3D objects, with existing methodologies like Score Distillation Sampling (SDS) offering promising guidance. However, these methods often encounter the "Janus" problem—multi-face ambiguities due to imprecise guidance. Additionally, while recent advancements in 3D gaussian splatting have shown its efficacy in representing 3D volumes, optimization of this representation remains largely unexplored. This paper introduces a unified framework for text-to-3D content generation that addresses these critical gaps. Our approach utilizes multi-view guidance to iteratively form the structure of the 3D model, progressively enhancing detail and accuracy. We also introduce a novel densification algorithm that aligns gaussians close to the surface, optimizing the structural integrity and fidelity of the generated models. Extensive experiments validate our approach, demonstrating that it produces high-quality visual outputs with minimal time cost. Notably, our method achieves high-quality results within half an hour of training, offering a substantial efficiency gain over most existing methods, which require hours of training time to achieve comparable results.
+    </p>
+    <div class="line"></div>
+    
+    <!-- results (videos) -->
+    <p class="title is-3 mt-5 has-text-centered">Architecture overview</p>
+    <figure class="image">
+      <img src="images/overview.png">
+    </figure>
+    <p class="has-text-justified">
+      <b>Overview of our MVGaussian framework:</b> Our approach begins with the random initialization of Gaussians within a unit sphere, refined iteratively using an SDS-based optimization strategy. Gaussians are optimized near the true surface, moving toward the pseudo surface while pruning those farther away. Each iteration renders four views with random azimuth angles, encoded into the latent space. Gaussian noise is added and denoised using a UNET model to compute the loss \(\mathcal{L}_{sds}\). The optimization gradient \(\nabla \mathcal{L}_{sds}\) updates the Gaussians, incorporating a feedback loop with fused point cloud data and voxel downsampling to enhance accuracy.
+    </p>
+
+    <div class="line"></div>
+    <p class="title is-3 mt-5 has-text-centered">Generated 3D assets from textual prompts</p>
+
+    <div class="columns is-mobile methods">
+      <div class="column">
+        <a href="https://taoranyi.com/gaussiandreamer/">
+          <b>GAUSSIAN DREAMER</b>
+        </a>
+        
+      </div>
+      <div class="column">
+        <a href="https://gsgen3d.github.io/">
+          <b>GSGEN</b>
+      </div>
+      <div class="column">
+        <a href="https://github.com/EnVision-Research/LucidDreamer">
+          <b>LUCID DREAMER</b>
+        </a>
+      </div>
+      <div class="column">
+        <a href="#">
+          <b>MVGAUSSIAN (OURS)</b>
+        </a>
+      </div>
+    </div>
+
+    <p><i>"An armored green-skin orc warrior riding a vicious hog."</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/orc.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/orc.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/orc.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/orc.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"A forbidden castle high up in the mountains."</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/castle.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/castle.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/castle.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/castle.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"A flying dragon, highly detailed, realistic, majestic."</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/dragon.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/dragon.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/dragon.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/dragon.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"A 3D model of an adorable cottage with a thatched roof"</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/cottage.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/cottage.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/cottage.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/cottage.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"A blue jay sitting on a willow basket of macarons"</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/bluejay.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/bluejay.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/bluejay.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/bluejay.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"Medieval soldier with shield and sword, fantasy, game, character, highly detailed, photorealistic, 4K, HD"</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/soldier.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/soldier.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/soldier.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/soldier.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"Jack Sparrow wearing sunglasses, head, photorealistic, 8k, HD, raw."</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/jacksparrow.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/jacksparrow.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/jacksparrow.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/jacksparrow.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p><i>"A peacock standing on a surfing board, highly detailed, majestic."</i></p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gaussian_dreamer/peacock.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gsgen/peacock.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/lucid_dreamer/peacock.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/mvgaussian/peacock.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <div class="line"></div>
+    <p class="title is-3 mt-5 has-text-centered">Additional results from MVGaussian</p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A DSLR photo of the Imperial State Crown of England, highly detailed, realistic, majestic, HD
+        </i>
+        <video muted autoplay loop> <source src="videos/mvgaussian/crown.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A DSLR photo of a Schnauzer wearing a pirate hat, highly detailed, realistic, majestic.
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/schnauzer.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          Airplane, fighter, steampunk style, ultra realistic, 4k, HD
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/steampunk_airplane.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          An opulent couch from the palace of Versailles
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/couch.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <div class="columns is-mobile">
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          Gandalf smiling, white hair, head, photorealistic, 8K, HD.
+        </i>
+        <video muted autoplay loop> <source src="videos/mvgaussian/gandalf.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          Joker wearing top hat, head, photorealistic, Fujifilm XT5, 8K, HD, raw.
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/joker.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A portrait of Hatsune Miku as a robot, head, anime, super detailed, best quality, 8K, HD
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/hatsune_miku.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          Michelangelo style statue of a dog reading news on a cellphone.
+        </i> 
+        <video muted autoplay loop> <source src="videos/mvgaussian/dog_statue.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <div class="columns is-mobile">
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A furry cat wearing armor, high resolution, highly detailed, photorealistic, nice, 8K, HD
+        </i>
+        <video muted autoplay loop> <source src="videos/mvgaussian/cat_armour.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          Flamethrower, with fire, scifi, cyberpunk, photorealistic, 8K, HD
+        </i>
+        <video muted autoplay loop> <source src="videos/mvgaussian/flamethrower.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A spanish galleon sailing on the open sea
+        </i>
+        <video muted autoplay loop> <source src="videos/mvgaussian/galleon.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i onclick="toggleFullText(this)">
+          A furry corgi.
+        </i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/corgi.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <div class="columns is-mobile">
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <!-- <div class="columns is-mobile">
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+    </div> -->
+
+    <!-- <div class="columns is-mobile">
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <i></i> <br/>
+        <video muted autoplay loop> <source src="videos/mvgaussian/" type="video/mp4"> </video>
+      </div>
+    </div> -->
+
+    
+    <!-- citation -->
+    <!-- <div class="card mt-4">
+      <header class="card-header">
+        <p class="card-header-title"> Citation </p>
+      </header>
+      <div class="card-content is-size-5 has-text-left">
+        <pre><code>Bibtex goes here</code></pre>
+      </div>
+    </div> -->
+  </div>
+  </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <div class="line"></div>
+      <p>We thank the authors of <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the template of this site.</p>
+    </div>
+  </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="scripts.js" defer></script>
+
+</html>
