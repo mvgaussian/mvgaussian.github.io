@@ -84,6 +84,11 @@
         </a>
       </div>
       <div class="column">
+        <a href="https://zongrui.page/ECCV2024-GCS-BEG/">
+          <b>GCS</b>
+        </a>
+      </div>
+      <div class="column">
         <a href="#">
           <b>MVGAUSSIAN (OURS)</b>
         </a>
@@ -102,6 +107,9 @@
         <video muted autoplay loop> <source src="videos/lucid_dreamer/orc.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/orc.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/orc.mp4" type="video/mp4"> </video>
       </div>
     </div>
@@ -116,6 +124,9 @@
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/lucid_dreamer/castle.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/castle.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/castle.mp4" type="video/mp4"> </video>
@@ -134,6 +145,9 @@
         <video muted autoplay loop> <source src="videos/lucid_dreamer/dragon.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/dragon.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/dragon.mp4" type="video/mp4"> </video>
       </div>
     </div>
@@ -148,6 +162,9 @@
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/lucid_dreamer/cottage.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/cottage.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/cottage.mp4" type="video/mp4"> </video>
@@ -166,6 +183,9 @@
         <video muted autoplay loop> <source src="videos/lucid_dreamer/bluejay.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/bluejay.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/bluejay.mp4" type="video/mp4"> </video>
       </div>
     </div>
@@ -180,6 +200,9 @@
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/lucid_dreamer/soldier.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/soldier.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/soldier.mp4" type="video/mp4"> </video>
@@ -198,6 +221,9 @@
         <video muted autoplay loop> <source src="videos/lucid_dreamer/jacksparrow.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/jacksparrow.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/jacksparrow.mp4" type="video/mp4"> </video>
       </div>
     </div>
@@ -212,6 +238,9 @@
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/lucid_dreamer/peacock.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column">
+        <video muted autoplay loop> <source src="videos/gcs/peacock.mp4" type="video/mp4"> </video>
       </div>
       <div class="column">
         <video muted autoplay loop> <source src="videos/mvgaussian/peacock.mp4" type="video/mp4"> </video>
@@ -368,7 +397,49 @@
         <pre><code>Bibtex goes here</code></pre>
       </div>
     </div> -->
+  
+    <div class="line"></div>
+    <p class="title is-3 mt-5 has-text-centered">Mesh reconstruction</p>
+    <p>Since the meshes are textureless, they might look</p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <i onclick="toggleFullText(this)">"An armored green-skin orc warrior riding a vicious hog."</i><br/>
+        <model-viewer src="meshes/orc.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <p><i onclick="toggleFullText(this)">"A forbidden castle high up in the mountains."</i></p>
+        <model-viewer src="meshes/castle.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <p><i onclick="toggleFullText(this)">"A flying dragon, highly detailed, realistic, majestic."</i></p>
+        <model-viewer src="meshes/dragon.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <p><i onclick="toggleFullText(this)">"A 3D model of an adorable cottage with a thatched roof"</i></p>
+        <model-viewer src="meshes/cottage.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+    </div>
+
+    <div class="columns is-mobile">
+      <div class="column">
+        <p><i>"A blue jay sitting on a willow basket of macarons"</i></p>
+        <model-viewer src="meshes/bluejay.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <i>"Medieval soldier with shield and sword, fantasy, game, character, highly detailed, photorealistic, 4K, HD"</i><br/>
+        <model-viewer src="meshes/soldier.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <p><i>"Jack Sparrow wearing sunglasses, head, photorealistic, 8k, HD, raw."</i></p>
+        <model-viewer src="meshes/jack.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="column">
+        <p><i>"A peacock standing on a surfing board, highly detailed, majestic."</i></p>
+        <model-viewer src="meshes/peacock.glb" poster="" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+    </div>
   </div>
+  
   </section>
   <footer class="footer">
     <div class="content has-text-centered">
@@ -382,5 +453,6 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="scripts.js" defer></script>
+
 
 </html>

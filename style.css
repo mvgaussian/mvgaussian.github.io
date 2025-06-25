@@ -32,7 +32,7 @@ a:hover {
     color: black; /* Initial text color */
 }
 
-.column i.full-text {
+.column i.full-text, .column p i.full-text {
     display: block;
     -webkit-line-clamp: unset;
     white-space: normal;
