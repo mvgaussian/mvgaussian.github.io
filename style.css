@@ -18,6 +18,9 @@ a:hover {
 }
 
 .column i {
+    font-size: 1rem;             /* Set your font size */
+    line-height: 1.5;            /* Set your line height */
+    height: calc(2 * 1.5em);     /* 2 lines × line-height */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -34,6 +37,8 @@ a:hover {
 
 .column i.full-text, .column p i.full-text {
     display: block;
+    min-height: calc(2 * 1.5em); /* Ensure it has the same height as the initial state */
+    height: auto; /* Allow full height */
     -webkit-line-clamp: unset;
     white-space: normal;
     max-height: 10em; /* Adjust according to the expected height of the full text */
